@@ -2,10 +2,17 @@ import asyncio
 import io
 import re
 from urllib.parse import quote_plus
+import os
+import subprocess
 
 import pandas as pd
 import streamlit as st
 from playwright.async_api import async_playwright
+
+try:
+    subprocess.run(["playwright", "install", "chromium"], check=True)
+except Exception as e:
+    print(f"Error installing Playwright browsers: {e}")
 
 
 st.set_page_config(
