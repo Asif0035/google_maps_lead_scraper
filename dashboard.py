@@ -115,7 +115,12 @@ async def scrape_google_maps(
         # This is headless=True because the application is running
         # on an Ubuntu server without a graphical desktop.
         browser = await p.chromium.launch(
-            headless=True
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-gpu",
+            ],
         )
 
         page = await browser.new_page(
